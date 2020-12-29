@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 
+import com.google.android.filament.IndexBuffer;
+import com.google.android.filament.VertexBuffer;
 import com.google.ar.sceneform.collision.Box;
 import com.google.ar.sceneform.collision.CollisionShape;
 import com.google.ar.sceneform.common.TransformProvider;
@@ -105,6 +107,16 @@ public abstract class Renderable {
   public void setCollisionShape(@Nullable CollisionShape collisionShape) {
     this.collisionShape = collisionShape;
     changeId.update();
+  }
+
+  public int getVertexBufferId(int index) {
+    IEngine engine = EngineInstance.getEngine();
+    return getRenderableData().getVertexBuffer().getId(engine.getFilamentEngine(), index);
+  }
+
+  public int getIndexBufferId() {
+    IEngine engine = EngineInstance.getEngine();
+    return getRenderableData().getIndexBuffer().getId(engine.getFilamentEngine());
   }
 
   /** Returns the material bound to the first submesh. */

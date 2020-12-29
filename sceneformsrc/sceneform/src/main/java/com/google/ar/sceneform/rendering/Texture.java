@@ -72,6 +72,11 @@ public class Texture {
     return Preconditions.checkNotNull(textureData).getFilamentTexture();
   }
 
+  public int getId() {
+    IEngine engine = EngineInstance.getEngine();
+    return getFilamentTexture().getId(engine.getFilamentEngine());
+  }
+
   private static com.google.android.filament.Texture.InternalFormat getInternalFormatForUsage(
       Usage usage) {
     com.google.android.filament.Texture.InternalFormat format;
